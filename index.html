@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas 🎄</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red-gift: #d63031;
+            --gold-bow: #f1c40f;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a2d1d;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                              url('https://image.pollinations.ai/prompt/a%20cozy%20christmas%20living%20room%20with%20a%20sparkling%20christmas%20tree%20by%20a%20window%20showing%20falling%20snow%20and%20city%20lights,%20fireplace%20glowing,%20warm%20lighting,%20hyperrealistic,%20cinematic?width=1200&height=800&seed=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* ❄️ Tuyết rơi */
+        .snow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .snow span {
+            position: absolute;
+            top: -10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) translateX(30px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .page-content {
+            display: none;
+            animation: zoomIn 0.8s ease;
+        }
+
+        .page-content.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(3.5rem, 12vw, 5.5rem);
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 4px 4px 0px rgba(0,0,0,0.6);
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1);
+            max-width: 800px;
+        }
+
+        /* Nút bấm Glassmorphism */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        
+        button {
+            padding: 18px 45px;
+            border-radius: 50px;
+            border: 2px solid var(--gold-bow);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.4s;
+            background: rgba(214, 48, 49, 0.2);
+            color: var(--white);
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: var(--gold-bow);
+            color: #000;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(241, 196, 15, 0.4);
+        }
+
+        /* Lưới hộp quà */
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        .gift-item {
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        /* Hộp quà SVG Đỏ Nơ Vàng */
+        .gift-svg {
+            width: 150px;
+            height: 150px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            transition: 0.4s;
+        }
+
+        .gift-item:hover .gift-svg {
+            transform: rotate(-10deg) scale(1.15);
+        }
+
+        .gift-item p {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* Thư viện ảnh Kỷ niệm */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 15px;
+            padding-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: rotate(calc(var(--r) * 1deg));
+            transition: 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 100;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .wish-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: var(--gold-bow);
+            margin: 30px 0;
+            text-shadow: 2px 2px 15px rgba(0,0,0,1);
+        }
+
+        iframe {
+            border-radius: 20px;
+            border: 5px solid var(--gold-bow);
+            box-shadow: 0 0 30px rgba(241, 196, 15, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="snow" id="snow"></div>
+
+    <audio id="noelMusic" loop>
+        <source src="https://www.mfiles.co.uk/mp3-downloads/jingle-bells-keyboard.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="page-content active" id="page1">
+            <h1>Merry Christmas</h1>
+            <p class="subtitle">Bạn có muốn biết mình đem điều gì đến cho bạn không?</p>
+            <div class="btn-group">
+                <button onclick="startExperience()">Có. Tôi muốn!! ✨</button>
+                <button style="border-color: #ff4757;" onclick="goToPage('pagePersuade')">Khummm 🙂</button>
+            </div>
+        </div>
+
+        <div class="page-content" id="pagePersuade">
+            <h1 style="font-size: 8rem;">🥺</h1>
+            <p class="wish-text" style="color: white;">Tôi hứa bạn sẽ thích nó mà!!!! 🥺</p>
+            <button onclick="goToPage(1)">Thử lại</button>
+        </div>
+
+        <div class="page-content" id="page2">
+            <h1 style="font-size: 3rem;">Chọn món quà của bạn</h1>
+            <div class="gift-grid">
+                <div class="gift-item" onclick="showGift(1)">
+                    <svg class="gift-svg" viewBox="0 0 100 100">
+                        <rect x="10" y="30" width="80" height="60" fill="#d63031"/>
+                        <rect x="45" y="30" width="10" height="60" fill="#f1c40f"/>
+                        <rect x="10" y="55" width="80" height="10" fill="#f1c40f"/>
+                        <path d="M50 30 C30 10 10 30 50 30 C90 30 70 10 50 30" fill="none" stroke="#f1c40f" stroke-width="5"/>
+                        <circle cx="50" cy="30" r="5" fill="#f1c40f"/>
+                    </svg>
+                    <p> </p>
+                </div>
+                <div class="gift-item" onclick="showGift(2)">
+                    <svg class="gift-svg" viewBox="0 0 100 100">
+                        <rect x="10" y="30" width="80" height="60" fill="#d63031"/>
+                        <rect x="45" y="30" width="10" height="60" fill="#f1c40f"/>
+                        <rect x="10" y="55" width="80" height="10" fill="#f1c40f"/>
+                        <path d="M50 30 C30 10 10 30 50 30 C90 30 70 10 50 30" fill="none" stroke="#f1c40f" stroke-width="5"/>
+                        <circle cx="50" cy="30" r="5" fill="#f1c40f"/>
+                    </svg>
+                    <p> </p>
+                </div>
+                <div class="gift-item" onclick="showGift(3)">
+                    <svg class="gift-svg" viewBox="0 0 100 100">
+                        <rect x="10" y="30" width="80" height="60" fill="#d63031"/>
+                        <rect x="45" y="30" width="10" height="60" fill="#f1c40f"/>
+                        <rect x="10" y="55" width="80" height="10" fill="#f1c40f"/>
+                        <path d="M50 30 C30 10 10 30 50 30 C90 30 70 10 50 30" fill="none" stroke="#f1c40f" stroke-width="5"/>
+                        <circle cx="50" cy="30" r="5" fill="#f1c40f"/>
+                    </svg>
+                    <p> </p>
+                </div>
+            </div>
+            <button style="margin-top: 50px; font-size: 0.8rem;" onclick="goToPage(1)">Quay lại</button>
+        </div>
+
+        <div class="page-content" id="page3">
+            
+            <div id="giftContent1" class="content-detail" style="display:none;">
+                <div class="photo-gallery">
+                    <div class="photo-frame" style="--r: -3">
+                        <img src="https://lh3.googleusercontent.com/d/1_wbC4su99wQHhTmVxuEUeJpoucNjeFBW" alt="1">
+                    </div>
+                    <div class="photo-frame" style="--r: 2">
+                        <img src="https://lh3.googleusercontent.com/d/165UIbH7xTnkziMSMtC_nOfK-Yd2-S_30" alt="2">
+                    </div>
+                    <div class="photo-frame" style="--r: -2">
+                        <img src="https://lh3.googleusercontent.com/d/1dgqrJEn0zZ09Dcvmk1eYRAsA5yxnhIPK" alt="3">
+                    </div>
+                </div>
+                <p class="subtitle">Chúc người đẹp giáng sinh vui vẻ nheee</p>
+            </div>
+
+            <div id="giftContent2" class="content-detail" style="display:none;">
+                <div style="display:flex; justify-content:center; align-items:center; width:100%;">
+                    <div style="width:100%; max-width:500px; border-radius:20px; overflow:hidden;
+                                border:4px solid var(--gold-bow);
+                                box-shadow:0 0 30px rgba(241,196,15,0.4);
+                                background:#000;">
+                        <video width="100%" controls autoplay muted playsinline preload="auto">
+                            <source src="all.mp4" type="video/mp4">
+                            Trình duyệt không hỗ trợ video.
+                        </video>
+                    </div>
+                </div>
+                <p class="subtitle" style="margin-top:20px; font-size:1.1rem;">
+                    Giai điệu Giáng sinh dành riêng cho bạn! ❄️🎙️
+                </p>
+            </div>
+
+            <div id="giftContent3" class="content-detail" style="display:none;">
+                <p class="wish-text">Merry Christmas!<br>Chúc bạn một mùa lễ hội rực rỡ và hạnh phúc bên những người thân yêu! ❤️</p>
+            </div>
+
+            <button style="margin-top: 40px;" onclick="goToPage(2)">Chọn món quà khác</button>
+        </div>
+    </div>
+
+    <script>
+        // Hiệu ứng tuyết
+        const snowContainer = document.getElementById('snow');
+        for (let i = 0; i < 100; i++) {
+            let flake = document.createElement('span');
+            let size = Math.random() * 4 + 2 + 'px';
+            flake.style.width = size;
+            flake.style.height = size;
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.animationDuration = Math.random() * 3 + 5 + 's';
+            flake.style.animationDelay = Math.random() * 5 + 's';
+            snowContainer.appendChild(flake);
+        }
+
+        const audio = document.getElementById('noelMusic');
+
+        function startExperience() {
+            audio.play().catch(() => {});
+            goToPage(2);
+        }
+
+        function goToPage(page) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            if(typeof page === 'number') {
+                document.getElementById('page' + page).classList.add('active');
+            } else {
+                document.getElementById(page).classList.add('active');
+            }
+        }
+
+        function showGift(n) {
+            goToPage(3);
+            document.querySelectorAll('.content-detail').forEach(d => d.style.display = 'none');
+            document.getElementById('giftContent' + n).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
